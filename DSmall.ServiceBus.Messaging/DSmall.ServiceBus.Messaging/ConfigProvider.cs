@@ -1,6 +1,7 @@
 ﻿namespace DSmall.ServiceBus.Messaging
 {
     using System.Configuration;
+    using System.IO;
     using Microsoft.Azure;
 
     /// <summary>The config provider.</summary>
@@ -11,7 +12,15 @@
         /// <returns>The <see cref="string"/>.</returns>
         public string GetCloudSetting(string settingName)
         {
-            return CloudConfigurationManager.GetSetting(settingName);
+            var settingValue = CloudConfigurationManager.GetSetting(settingName);
+
+            if (string.IsNullOrWhiteSpace(settingValue))
+            {
+                var message = string.Format("No Cloud Configuration Setting with name '{0}' found.", settingName);
+                throw new InvalidDataException(message);
+            }
+
+            return settingValue;
         }
 
         /// <summary>The get app setting.</summary>
@@ -19,7 +28,15 @@
         /// <returns>The <see cref="string"/>.</returns>
         public string GetAppSetting(string settingName)
         {
-            return ConfigurationManager.AppSettings[settingName];
+            var settingValue = ConfigurationManager.AppSettings[settingName];
+
+            if (string.IsNullOrWhiteSpace(settingValue))
+            {
+                var message = string.Format("No Application Configuration Setting with name '{0}' found.", settingName);
+                throw new InvalidDataException(message);
+            }
+
+            return settingValue;
         }
     }
 }
