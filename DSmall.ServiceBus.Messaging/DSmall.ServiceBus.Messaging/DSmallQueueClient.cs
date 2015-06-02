@@ -28,8 +28,8 @@
         /// <returns>The <see cref="IQueueClient"/>.</returns>
         public IQueueClient GetQueueClient()
         {
-            var queueName = configProvider.GetCloudSetting(QueueNameSettingName);
-            var connectionString = configProvider.GetAppSetting(ConnectionStringSettingName);
+            var queueName = configProvider.GetSetting(QueueNameSettingName);
+            var connectionString = configProvider.GetSetting(ConnectionStringSettingName);
 
             return new DSmallQueueClient(QueueClient.CreateFromConnectionString(connectionString, queueName));
         }

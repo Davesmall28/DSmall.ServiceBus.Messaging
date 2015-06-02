@@ -48,7 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigProvider.cs" />
+    <Compile Include="ApplicationConfigProvider.cs" />
+    <Compile Include="CloudConfigProvider.cs" />
     <Compile Include="DSmallQueueClient.cs" />
     <Compile Include="IConfigProvider.cs" />
     <Compile Include="IQueueClient.cs" />
