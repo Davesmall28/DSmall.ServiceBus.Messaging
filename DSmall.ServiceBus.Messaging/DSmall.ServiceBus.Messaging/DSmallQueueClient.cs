@@ -1,5 +1,6 @@
 ﻿namespace DSmall.ServiceBus.Messaging
 {
+    using System;
     using Microsoft.ServiceBus.Messaging;
 
     /// <summary>The dSmall cloud queue client.</summary>
@@ -39,6 +40,21 @@
         public BrokeredMessage RetrieveMessage()
         {
             return queueClient.Receive();
+        }
+
+        /// <summary>The on message.</summary>
+        /// <param name="callback">The call back.</param>
+        public void OnMessage(Action<BrokeredMessage> callback)
+        {
+            queueClient.OnMessage(callback);
+        }
+
+        /// <summary>The on message.</summary>
+        /// <param name="callback">The call back.</param>
+        /// <param name="onMessageOptions">The on message options.</param>
+        public void OnMessage(Action<BrokeredMessage> callback, OnMessageOptions onMessageOptions)
+        {
+            queueClient.OnMessage(callback, onMessageOptions);
         }
     }
 }
