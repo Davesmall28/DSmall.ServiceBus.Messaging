@@ -1,0 +1,2 @@
+language: csharp
+solution: DSmall.ServiceBus.Messaging/DSmall.ServiceBus.Messaging.sln
